@@ -5,8 +5,10 @@ axios.defaults.withCredentials = true
 
 axios.interceptors.request.use(
   config => {
-    config.headers['Accept'] = 'application/vnd.company.v1+json'
-    config.headers['Authorization'] = window.sessionStorage.getItem('token')
+    if (config.url.indexOf('http://117.50.74.74/upload.php') === -1) {
+      config.headers['Accept'] = 'application/vnd.company.v1+json'
+      config.headers['Authorization'] = window.sessionStorage.getItem('token')
+    }
     return config
   },
   err => {
